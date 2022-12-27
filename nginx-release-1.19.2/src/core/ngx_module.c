@@ -26,7 +26,7 @@ ngx_int_t
 ngx_preinit_modules(void)
 {
     ngx_uint_t  i;
-
+    printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     for (i = 0; ngx_modules[i]; i++) {
         ngx_modules[i]->index = i;
         ngx_modules[i]->name = ngx_module_names[i];
@@ -52,7 +52,7 @@ ngx_cycle_modules(ngx_cycle_t *cycle)
     if (cycle->modules == NULL) {
         return NGX_ERROR;
     }
-
+printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     ngx_memcpy(cycle->modules, ngx_modules,
                ngx_modules_n * sizeof(ngx_module_t *));
 

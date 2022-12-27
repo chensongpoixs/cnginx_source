@@ -6434,7 +6434,7 @@ static void *
 ngx_http_upstream_create_main_conf(ngx_conf_t *cf)
 {
     ngx_http_upstream_main_conf_t  *umcf;
-
+    printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     umcf = ngx_pcalloc(cf->pool, sizeof(ngx_http_upstream_main_conf_t));
     if (umcf == NULL) {
         return NULL;
@@ -6465,7 +6465,7 @@ ngx_http_upstream_init_main_conf(ngx_conf_t *cf, void *conf)
     ngx_http_upstream_srv_conf_t  **uscfp;
 
     uscfp = umcf->upstreams.elts;
-
+    printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     for (i = 0; i < umcf->upstreams.nelts; i++) {
 
         init = uscfp[i]->peer.init_upstream ? uscfp[i]->peer.init_upstream:

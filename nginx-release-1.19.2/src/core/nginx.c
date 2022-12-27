@@ -284,7 +284,8 @@ main(int argc, char *const *argv)
         return 1;
     }
 
-    if (ngx_preinit_modules() != NGX_OK) {
+    if (ngx_preinit_modules() != NGX_OK) 
+    {
         return 1;
     }
 
@@ -1549,7 +1550,7 @@ ngx_load_module(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 
     order = ngx_dlsym(handle, "ngx_module_order");
-
+    printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     for (i = 0; modules[i]; i++) {
         module = modules[i];
         module->name = names[i];
@@ -1557,7 +1558,7 @@ ngx_load_module(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         if (ngx_add_module(cf, &file, module, order) != NGX_OK) {
             return NGX_CONF_ERROR;
         }
-
+        printf("[%s][%d][module: %s] [i:%lu]\n", __FUNCTION__, __LINE__, module->name, module->index);
         ngx_log_debug2(NGX_LOG_DEBUG_CORE, cf->log, 0, "module: %s i:%ui",
                        module->name, module->index);
     }

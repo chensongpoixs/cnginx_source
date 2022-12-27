@@ -855,7 +855,7 @@ ngx_http_proxy_handler(ngx_http_request_t *r)
 #if (NGX_HTTP_CACHE)
     ngx_http_proxy_main_conf_t  *pmcf;
 #endif
-
+    printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     if (ngx_http_upstream_create(r) != NGX_OK) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
@@ -1165,7 +1165,7 @@ ngx_http_proxy_create_request(ngx_http_request_t *r)
     ngx_http_script_engine_t      e, le;
     ngx_http_proxy_loc_conf_t    *plcf;
     ngx_http_script_len_code_pt   lcode;
-
+printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     u = r->upstream;
 
     plcf = ngx_http_get_module_loc_conf(r, ngx_http_proxy_module);
@@ -1523,7 +1523,7 @@ static ngx_int_t
 ngx_http_proxy_reinit_request(ngx_http_request_t *r)
 {
     ngx_http_proxy_ctx_t  *ctx;
-
+printf("[%s][%d]\n", __FUNCTION__, __LINE__);
     ctx = ngx_http_get_module_ctx(r, ngx_http_proxy_module);
 
     if (ctx == NULL) {
@@ -3686,7 +3686,7 @@ ngx_http_proxy_pass(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 
         return NGX_CONF_OK;
     }
-
+    printf("[%s][%d][url->data = %s]\n", __FUNCTION__, __LINE__, url->data);
     if (ngx_strncasecmp(url->data, (u_char *) "http://", 7) == 0) {
         add = 7;
         port = 80;
